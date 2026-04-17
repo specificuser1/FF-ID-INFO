@@ -1,0 +1,16 @@
+{
+  "name": "ff-uid-checker-bot",
+  "version": "2.1.0",
+  "description": "Free Fire ID Checker using freefireinfo API",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "dependencies": {
+    "discord.js": "^14.15.3",
+    "axios": "^1.7.2",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2"
+  }
+}
