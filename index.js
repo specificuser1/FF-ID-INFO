@@ -491,4 +491,38 @@ client.on('interactionCreate', async (interaction) => {
         .addComponents(          new ButtonBuilder()
             .setCustomId(`like_${uid}`)
             .setLabel(userLiked ? '❤️ Liked' : '🤍 Like')
- 
+            .setStyle(userLiked ? ButtonStyle.Success : ButtonStyle.Primary),
+          new ButtonBuilder()
+            .setCustomId(`refresh_${uid}`)
+            .setLabel('🔄 Refresh')
+            .setStyle(ButtonStyle.Secondary)
+        );
+      
+      await interaction.editReply({ embeds: [embed], components: [row] });
+    } catch (e) {
+      await interaction.followUp({ content: '⚠️ Could not update embed.', ephemeral: true });
+    }
+  }
+});
+
+// 🔌 Login & Graceful Shutdown
+client.login(process.env.DISCORD_TOKEN).catch(err => {
+  console.error('❌ Login Failed:', err.message);
+  process.exit(1);
+});
+
+['SIGINT', 'SIGTERM'].forEach(signal => {
+  process.on(signal, () => {
+    console.log(`\n🛑 Received ${signal}. Shutting down...`);
+    client.destroy();
+    process.exit(0);
+  });
+});
+
+// 🕐 Helper: Format uptime
+function formatUptime(seconds) {
+  const d = Math.floor(seconds / 86400);
+  const h = Math.floor((seconds % 86400) / 3600);
+  const m = Math.floor((seconds % 3600) / 60);
+  return `${d}d ${h}h ${m}m`;
+}
