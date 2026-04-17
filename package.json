@@ -1,7 +1,7 @@
 {
-  "name": "ff-uid-checker-bot",
-  "version": "2.1.0",
-  "description": "Free Fire ID Checker using freefireinfo API",
+  "name": "ff-uid-checker-pro",
+  "version": "3.0.0",
+  "description": "Professional Free Fire ID Checker with Admin Panel",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
@@ -12,5 +12,8 @@
     "axios": "^1.7.2",
     "dotenv": "^16.4.5",
     "express": "^4.19.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }
